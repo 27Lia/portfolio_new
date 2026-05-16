@@ -1,17 +1,27 @@
 import type { OpenSourceItem, OtherProject, Project } from '../types'
 
+import pickmeupLogo from '../assets/픽미업로고.svg'
+import pickmeupImg from '../assets/픽미업.svg'
+import shakalakLogo from '../assets/샤카라카사용자로고.svg'
+import shakalakaImg from '../assets/샤카라카.svg'
+import shakalakaAdminImg from '../assets/샤카라카관리자.svg'
+import inventoryImg from '../assets/샤카라카재고관리.svg'
+import expoLogo from '../assets/원예치유로고.svg'
+import expoImg from '../assets/원예치유.svg'
+import piggicelImg from '../assets/피기셀.svg'
+
 export const PERSONAL_INFO = {
   name: '김선미',
   title: 'Frontend Developer',
   summary:
-    '실서비스를 처음부터 끝까지 단독으로 만들어온 실전형 프론트엔드 개발자입니다.\nReact · React Native 기반의 웹/앱을 설계·개발·배포까지 직접 수행했으며, 복잡한 결제 플로우·KYC 인증·AI 연동·IAP 등 도메인 난이도가 높은 기능을 혼자서 구현해왔습니다.\n에이전시 환경에서 다양한 도메인의 프로젝트를 빠르게 소화하며 빠른 실행력과 문제 해결 중심의 사고를 길러왔습니다.',
+    '개발 운영 배포까지 경험해온 프론트엔드 개발자입니다.\n결제·KYC·AI·IAP 등 난도 높은 기능을 React · React Native로 직접 구현했으며, 에이전시에서 다양한 도메인을 빠르게 소화하며 실행력을 쌓았습니다.',
   email: 'tjs4114@gmail.com',
   github: 'https://github.com/27Lia',
   skills: [
     'React, React Native 기반의 IOS, Android 크로스 플랫폼 앱 개발',
-    'Zustand, React Query, i18n',
+    'Zustand, React Query, 다국어 i18n',
     'Toss Payments, IAP(iOS/Android), FCM(푸시알림) NICE 본인인증',
-    'react-native-vision-camera, WebView 브릿지 통신',
+    'WebView 브릿지 통신',
     'App Store / Google Play 배포 및 운영', 
 ]
 }
@@ -23,6 +33,8 @@ export const mainProjects: Project[] = [
     subtitle: '결혼 매칭 플랫폼 앱',
     period: '2025.06 – 2025.11',
     platform: 'Android / iOS',
+    logo: pickmeupLogo,
+    image: pickmeupImg,
     links: [
       {
         label: 'Android',
@@ -73,22 +85,22 @@ export const mainProjects: Project[] = [
   {
     id: 'shakalaka',
     title: 'SHAKALAKA',
-    subtitle: 'B2B/B2C 도매 커머스 플랫폼 + 운영 관리자 대시보드',
+    subtitle: 'B2B/B2C 도매 커머스 플랫폼',
     period: '2024.09 – 2025.04',
     platform: 'Web',
+    logo: shakalakLogo,
+    image: shakalakaImg,
     overview:
-      '셀러·브랜드 페이지, 상품 등록, 장바구니, 결제, 구독 시스템을 갖춘 B2B/B2C 도매 커머스 웹앱과 회원·상품·주문·정산·지표를 관리하는 운영자 전용 어드민 대시보드를 함께 개발한 프로젝트입니다.',
+      '셀러·브랜드 페이지, 상품 등록, 장바구니, 결제, 구독 시스템을 갖춘 B2B/B2C 도매 커머스 웹앱입니다.',
     role: '프론트엔드 개발 (2인 팀)',
     roleDetails: [
       '다중 조건 가격 계산 로직 설계 및 구현',
       'Toss Payments 일반결제 및 정기구독 빌링키 연동',
       '판매자 상품 등록 플로우 (복잡한 옵션 조합 폼) 구현',
       '장바구니 재고 기반 구매 제한 및 셀러별 배송비 분리 로직',
-      'i18n 다국어 지원 시스템 (한국어/영어) 적용',
-      'Recharts 기반 퍼널·코호트·MAU/DAU·LTV 분석 대시보드 구현',
-      '판매자 수수료 반영 정산 워크플로우 UI 구현',
+      'i18n 다국어 지원 시스템 (한국어/영어/일어/중국어) 적용',
     ],
-    skills: ['React', 'TypeScript', 'React Query', 'Zustand', 'Toss Payments', 'Recharts', 'Ant Design', 'i18n'],
+    skills: ['React', 'TypeScript', 'React Query', 'Zustand', 'Toss Payments', 'Ant Design', 'i18n'],
     subsections: [
       {
         title: '다중 조건 가격 계산 로직',
@@ -104,14 +116,33 @@ export const mainProjects: Project[] = [
           toBe: 'requestBillingAuth로 빌링키 발급 플로우를 분리하고, 결제 상태(성공·실패·품절·환불)에 따른 UX 분기를 명확히 정의해 사용자에게 일관된 피드백을 제공했습니다.',
         },
       },
+    ],
+    retrospective:
+      '에이전시에서 진행한 프로젝트 중 비즈니스 로직이 가장 복잡했던 프로젝트입니다. 가격 계산 하나에도 여러 조건이 얽혀있어 단순히 구현하는 것보다 구조를 어떻게 설계하느냐가 더 중요하다는 것을 체감했습니다. 커머스 도메인 특유의 엣지 케이스(재고 소진, 결제 실패, 환불 등)를 꼼꼼하게 처리하면서 사용자 경험을 끝까지 책임지는 관점을 가지게 되었습니다.',
+  },
+  {
+    id: 'shakalaka-admin',
+    title: 'SHAKALAKA Admin',
+    subtitle: '운영 관리자 대시보드',
+    period: '2024.09 – 2025.04',
+    platform: 'Web',
+    image: shakalakaAdminImg,
+    overview:
+      '회원·상품·주문·정산·지표를 관리하는 운영자 전용 어드민 대시보드입니다.',
+    role: '프론트엔드 개발 (2인 팀)',
+    roleDetails: [
+      'Recharts 기반 퍼널·코호트·MAU/DAU·LTV 분석 대시보드 구현',
+      '판매자 수수료 반영 정산 워크플로우 UI 구현',
+      '회원·상품·주문 관리 테이블 및 필터 UI 구현',
+    ],
+    skills: ['React', 'TypeScript', 'React Query', 'Recharts', 'Ant Design'],
+    subsections: [
       {
         title: '분석 대시보드 구현',
         description:
           'Recharts 기반으로 퍼널 분석 · 코호트 리텐션 · MAU/DAU · 매출 · 구독 지표를 시각화했습니다. 월별 코호트 기반 유지율·이탈률·LTV 차트를 구현하여 운영팀이 데이터 기반으로 의사결정할 수 있는 도구를 제공했습니다.',
       },
     ],
-    retrospective:
-      '에이전시에서 진행한 프로젝트 중 비즈니스 로직이 가장 복잡했던 프로젝트입니다. 가격 계산 하나에도 여러 조건이 얽혀있어 단순히 구현하는 것보다 구조를 어떻게 설계하느냐가 더 중요하다는 것을 체감했습니다. 커머스 도메인 특유의 엣지 케이스(재고 소진, 결제 실패, 환불 등)를 꼼꼼하게 처리하면서 사용자 경험을 끝까지 책임지는 관점을 가지게 되었습니다.',
   },
   {
     id: 'inventory',
@@ -119,6 +150,7 @@ export const mainProjects: Project[] = [
     subtitle: 'AI 기반 재고 관리 앱',
     period: '2025.04 – 2025.06',
     platform: 'Android / iOS',
+    image: inventoryImg,
     overview:
       '의류 재고를 촬영 한 장으로 등록하는 재고 관리 앱. 사진을 찍으면 AI가 카테고리·색상·패턴을 자동 분류하고, 결과를 재고 등록 폼에 자동 반영하는 플로우로 구성됩니다.',
     role: '프론트엔드 개발 (단독)',
@@ -146,6 +178,8 @@ export const mainProjects: Project[] = [
     subtitle: '박람회 전용 크로스플랫폼 앱',
     period: '2026.01 – 2026.04',
     platform: 'Android / iOS',
+    logo: expoLogo,
+    image: expoImg,
     links: [
       {
         label: 'Android',
@@ -184,6 +218,7 @@ export const mainProjects: Project[] = [
     subtitle: 'Next.js 이벤트 기능 개발',
     period: '2025.05 – 2025.06',
     platform: 'Web',
+    image: piggicelImg,
     links: [{ label: 'Site', url: 'https://app.piggycell.io/ko/home' }],
     overview:
       '기존 서비스에 출석 체크 이벤트 기능을 단독으로 설계 및 개발. 외부 개발자로 투입되어 낯선 코드베이스를 분석한 후 독립적으로 기능을 구현했습니다.',

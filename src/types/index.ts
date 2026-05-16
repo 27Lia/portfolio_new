@@ -16,6 +16,8 @@ export interface Project {
   period: string;
   platform?: string;
   links?: { label: string; url: string }[];
+  logo?: string;
+  image?: string;
   overview: string;
   role: string;
   roleDetails: string[];
