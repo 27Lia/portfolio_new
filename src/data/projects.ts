@@ -1,19 +1,19 @@
 import type { OpenSourceItem, OtherProject, Project } from '../types'
 
 export const PERSONAL_INFO = {
-  name: '[YOUR_NAME]',
+  name: '김선미',
   title: 'Frontend Developer',
   summary:
     '실서비스를 처음부터 끝까지 단독으로 만들어온 실전형 프론트엔드 개발자입니다.\nReact · React Native 기반의 웹/앱을 설계·개발·배포까지 직접 수행했으며, 복잡한 결제 플로우·KYC 인증·AI 연동·IAP 등 도메인 난이도가 높은 기능을 혼자서 구현해왔습니다.\n에이전시 환경에서 다양한 도메인의 프로젝트를 빠르게 소화하며 빠른 실행력과 문제 해결 중심의 사고를 길러왔습니다.',
   email: 'tjs4114@gmail.com',
   github: 'https://github.com/27Lia',
   skills: [
-    'React, React Native, Next.js, TypeScript',
+    'React, React Native 기반의 IOS, Android 크로스 플랫폼 앱 개발',
     'Zustand, React Query, i18n',
-    'Toss Payments, IAP(iOS/Android), NICE 본인인증',
+    'Toss Payments, IAP(iOS/Android), FCM(푸시알림) NICE 본인인증',
     'react-native-vision-camera, WebView 브릿지 통신',
-    'iOS/Android 앱 배포 (TestFlight, Google Play Console)',
-  ],
+    'App Store / Google Play 배포 및 운영', 
+]
 }
 
 export const mainProjects: Project[] = [
