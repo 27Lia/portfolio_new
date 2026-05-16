@@ -1,4 +1,4 @@
-import { Download, Mail } from "lucide-react";
+// import { Download, Mail } from "lucide-react";
 import { PERSONAL_INFO } from "../data/projects";
 
 export default function Intro() {
