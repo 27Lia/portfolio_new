@@ -14,7 +14,7 @@ export const PERSONAL_INFO = {
   name: '김선미',
   title: 'Frontend Developer',
   summary:
-    '개발 운영 배포까지 경험해온 프론트엔드 개발자입니다.\n결제·KYC·AI·IAP 등 난도 높은 기능을 React · React Native로 직접 구현했으며, 에이전시에서 다양한 도메인을 빠르게 소화하며 실행력을 쌓았습니다.',
+    '개발 운영 배포까지 경험해온 프론트엔드 개발자입니다.\n 결제·KYC·IAP 등 난이도 높은 기능을 React · React Native로 직접 구현했으며, 에이전시에서 다양한 도메인을 빠르게 소화하며 실행력을 쌓았습니다.',
   email: 'tjs4114@gmail.com',
   github: 'https://github.com/27Lia',
   skills: [
