@@ -32,6 +32,24 @@ body {
   display: none;
 }
 
+@media print {
+  aside,
+  .mobile-topbar,
+  .scroll-progress,
+  .print-btn {
+    display: none !important;
+  }
+
+  main {
+    padding-left: 0 !important;
+    padding-top: 0 !important;
+  }
+
+  section {
+    break-inside: avoid;
+  }
+}
+
 ::selection {
   background-color: #10b981;
   color: #ffffff;

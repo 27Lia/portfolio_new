@@ -15,7 +15,7 @@ export default function ScrollProgress() {
   }, []);
 
   return (
-    <div className="fixed top-0 left-0 right-0 h-1.25 z-50">
+    <div className="scroll-progress fixed top-0 left-0 right-0 h-1.25 z-50">
       <div
         className="h-full bg-emerald-500"
         style={{ width: `${progress}%` }}

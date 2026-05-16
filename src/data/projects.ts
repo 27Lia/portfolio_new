@@ -145,7 +145,7 @@ export const mainProjects: Project[] = [
     ],
   },
   {
-    id: 'inventory',
+    id: 'shakalaka-inventory',
     title: 'SHAKALAKA Inventory Management',
     subtitle: 'AI 기반 재고 관리 앱',
     period: '2025.04 – 2025.06',
@@ -272,12 +272,6 @@ export const otherProjects: OtherProject[] = [
 ]
 
 export const openSourceContribs: OpenSourceItem[] = [
-  { date: '2023.09.19', repo: 'spring-kafka', description: 'sample 결과 출력 문서 개선' },
-  { date: '2023.09.21', repo: 'spring-framework', description: 'webflux 확장함수 null값 처리 개선' },
-  { date: '2023.09.23', repo: 'spring-boot', description: 'Actuator HealthMetric 조건 검사 개선' },
-  { date: '2023.09.23', repo: 'armeria', description: 'Type 클래스 확장 함수명 네이밍 개선' },
-  { date: '2024.01.06', repo: 'Exposed', description: 'SQL, update Statement 개선' },
-  { date: '2024.01.19', repo: 'http-auth-parser', description: '문서 예제 오류 fix' },
-  { date: '2024.01.30', repo: 'kotlin-jdsl', description: '산술 연산자 CEILING 스펙 정의, 테스트 코드 작성' },
-  { date: '2024.03.08', repo: 'cglib', description: 'Spring DI, Enhancer private method 관련 이슈 트래킹' },
+  { date: '2024.08', repo: 'Quiz-to-Contribute-OSS', description: 'style, layout 개선' },
+
 ]
