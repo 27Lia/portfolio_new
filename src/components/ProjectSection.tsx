@@ -10,8 +10,8 @@ export default function ProjectSection({ project }: Props) {
   return (
     <section id={project.id} className="pb-16 border-b border-gray-100">
       {/* Header */}
-      <div className="flex items-start justify-between gap-4 mb-4">
-        <div className="flex items-center gap-3">
+      <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3 mb-4">
+        <div className="flex items-center gap-3 min-w-0">
           {project.logo && (
             <img
               src={project.logo}
@@ -19,8 +19,8 @@ export default function ProjectSection({ project }: Props) {
               className="w-10 h-10 rounded-full object-cover shrink-0"
             />
           )}
-          <div>
-            <h2 className="text-2xl font-bold text-gray-900 leading-tight">
+          <div className="min-w-0">
+            <h2 className="text-xl sm:text-2xl font-bold text-gray-900 leading-tight break-words">
               {project.title}
             </h2>
             <span className="text-sm text-gray-400">{project.period}</span>
@@ -52,7 +52,7 @@ export default function ProjectSection({ project }: Props) {
             project.platform?.includes("Android");
           return (
             <div
-              className={`mb-8 rounded-xl overflow-hidden border border-gray-100 shadow-sm h-120 flex items-center justify-center ${isMobile ? "bg-white" : ""}`}
+              className={`mb-8 rounded-xl overflow-hidden border border-gray-100 shadow-sm h-56 sm:h-120 flex items-center justify-center ${isMobile ? "bg-white" : ""}`}
             >
               <img
                 src={project.image}
