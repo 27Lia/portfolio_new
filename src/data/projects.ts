@@ -87,7 +87,7 @@ export const mainProjects: Project[] = [
     title: 'SHAKALAKA',
     subtitle: 'B2B/B2C 도매 커머스 플랫폼',
     period: '2024.09 – 2025.04',
-    platform: 'Web',
+    platform: 'Android / iOS',
     logo: shakalakLogo,
     image: shakalakaImg,
     overview:

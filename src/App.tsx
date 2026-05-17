@@ -1,11 +1,11 @@
-import FadeIn from './components/FadeIn'
-import Intro from './components/Intro'
-import OtherProjects from './components/OtherProjects'
-import Others from './components/Others'
-import ProjectSection from './components/ProjectSection'
-import ScrollProgress from './components/ScrollProgress'
-import Sidebar from './components/Sidebar'
-import { mainProjects, otherProjects } from './data/projects'
+import FadeIn from "./components/FadeIn";
+import Intro from "./components/Intro";
+import OtherProjects from "./components/OtherProjects";
+import Others from "./components/Others";
+import ProjectSection from "./components/ProjectSection";
+import ScrollProgress from "./components/ScrollProgress";
+import Sidebar from "./components/Sidebar";
+import { mainProjects, otherProjects } from "./data/projects";
 
 export default function App() {
   return (
@@ -24,12 +24,12 @@ export default function App() {
             <FadeIn>
               <OtherProjects projects={otherProjects} />
             </FadeIn>
-            <FadeIn>
+            {/* <FadeIn>
               <Others />
-            </FadeIn>
+            </FadeIn> */}
           </div>
         </div>
       </main>
     </div>
-  )
+  );
 }

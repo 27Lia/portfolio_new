@@ -50,15 +50,16 @@ export default function ProjectSection({ project }: Props) {
           const isMobile =
             project.platform?.includes("iOS") ||
             project.platform?.includes("Android");
+          const useContain = isMobile;
           return (
             <div
-              className={`mb-8 rounded-xl overflow-hidden border border-gray-100 shadow-sm h-56 sm:h-120 flex items-center justify-center ${isMobile ? "bg-white" : ""}`}
+              className={`mb-8 rounded-xl overflow-hidden border border-gray-100 shadow-sm h-56 sm:h-120 flex items-center justify-center ${useContain ? "bg-white" : ""}`}
             >
               <img
                 src={project.image}
                 alt={`${project.title} screenshot`}
                 className={
-                  isMobile
+                  useContain
                     ? "h-full object-contain"
                     : "w-full h-full object-cover"
                 }

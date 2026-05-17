@@ -11,7 +11,7 @@ const navItems = [
   { id: "expo", label: "원예치유박람회" },
   { id: "piggicel", label: "Piggicel" },
   { id: "other-projects", label: "Other Projects" },
-  { id: "others", label: "Others" },
+  // { id: "others", label: "Others" },
 ];
 
 export default function Sidebar() {
