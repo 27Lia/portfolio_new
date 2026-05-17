@@ -1,7 +1,7 @@
 import FadeIn from "./components/FadeIn";
 import Intro from "./components/Intro";
 import OtherProjects from "./components/OtherProjects";
-import Others from "./components/Others";
+// import Others from "./components/Others";
 import ProjectSection from "./components/ProjectSection";
 import ScrollProgress from "./components/ScrollProgress";
 import Sidebar from "./components/Sidebar";
