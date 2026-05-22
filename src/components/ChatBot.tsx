@@ -24,15 +24,35 @@ function parseErrorMessage(msg: string): string {
   return '오류가 발생했습니다. 잠시 후 다시 시도해주세요.'
 }
 
+const BUBBLE_KEY = 'chatbot-bubble-dismissed'
+
 export default function ChatBot() {
   const [isOpen, setIsOpen] = useState(false)
   const [messages, setMessages] = useState<Message[]>([])
   const [input, setInput] = useState('')
   const [isLoading, setIsLoading] = useState(false)
   const [toast, setToast] = useState<string | null>(null)
+  const [showBubble, setShowBubble] = useState(false)
   const messagesEndRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLInputElement>(null)
   const toastTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
+  const bubbleTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
+
+  useEffect(() => {
+    if (localStorage.getItem(BUBBLE_KEY)) return
+    const show = setTimeout(() => setShowBubble(true), 2000)
+    bubbleTimer.current = setTimeout(() => dismissBubble(), 10000)
+    return () => {
+      clearTimeout(show)
+      if (bubbleTimer.current) clearTimeout(bubbleTimer.current)
+    }
+  }, [])
+
+  const dismissBubble = () => {
+    setShowBubble(false)
+    localStorage.setItem(BUBBLE_KEY, '1')
+    if (bubbleTimer.current) clearTimeout(bubbleTimer.current)
+  }
 
   const showToast = (message: string) => {
     if (toastTimer.current) clearTimeout(toastTimer.current)
@@ -233,9 +253,32 @@ export default function ChatBot() {
         </div>
       )}
 
+      {/* Speech bubble */}
+      {showBubble && !isOpen && (
+        <div className="relative flex items-end gap-2 animate-in slide-in-from-bottom-2 fade-in duration-300">
+          <div className="relative bg-white border border-gray-200 rounded-2xl rounded-br-sm shadow-lg px-4 py-3 max-w-[220px]">
+            <button
+              onClick={dismissBubble}
+              className="absolute -top-2 -right-2 w-5 h-5 rounded-full bg-gray-200 hover:bg-gray-300 flex items-center justify-center transition-colors"
+            >
+              <X className="w-2.5 h-2.5 text-gray-600" />
+            </button>
+            <p className="text-xs font-medium text-gray-800 leading-relaxed">
+              AI 어시스턴트예요!
+            </p>
+            <p className="text-xs text-gray-500 mt-0.5">
+              경력이나 프로젝트, 뭐든 물어보세요 :)
+            </p>
+          </div>
+        </div>
+      )}
+
       {/* Toggle button */}
       <button
-        onClick={() => setIsOpen((v) => !v)}
+        onClick={() => {
+          setIsOpen((v) => !v)
+          dismissBubble()
+        }}
         className="w-12 h-12 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white shadow-lg flex items-center justify-center transition-all hover:scale-105 active:scale-95"
         aria-label="AI 어시스턴트 열기"
       >
