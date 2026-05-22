@@ -164,7 +164,7 @@ export default function ChatBot() {
   }
 
   return (
-    <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-3">
+    <div className="chatbot-widget fixed bottom-6 right-6 z-50 flex flex-col items-end gap-3">
       {/* Chat panel */}
       {isOpen && (
         <div className="w-80 sm:w-96 h-[520px] bg-white rounded-2xl shadow-2xl border border-gray-100 flex flex-col overflow-hidden">

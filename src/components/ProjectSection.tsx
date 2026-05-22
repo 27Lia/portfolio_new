@@ -53,7 +53,7 @@ export default function ProjectSection({ project }: Props) {
           const useContain = isMobile;
           return (
             <div
-              className={`mb-8 rounded-xl overflow-hidden border border-gray-100 shadow-sm h-56 sm:h-120 flex items-center justify-center ${useContain ? "bg-white" : ""}`}
+              className={`project-image mb-8 rounded-xl overflow-hidden border border-gray-100 shadow-sm h-56 sm:h-120 flex items-center justify-center ${useContain ? "bg-white" : ""}`}
             >
               <img
                 src={project.image}
