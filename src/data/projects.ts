@@ -22,7 +22,8 @@ export const PERSONAL_INFO = {
     'Zustand, React Query, 다국어 i18n',
     'Toss Payments, IAP(iOS/Android), FCM(푸시알림) NICE 본인인증',
     'WebView 브릿지 통신',
-    'App Store / Google Play 배포 및 운영', 
+    'App Store / Google Play 배포 및 운영',
+    'Anthropic API 연동 (SSE 스트리밍 AI 챗봇 구현)',
 ]
 }
 
@@ -211,6 +212,32 @@ export const mainProjects: Project[] = [
     subsections: [],
     retrospective:
       '딥링크·권한처리·WebView 브릿지를 하나의 프로젝트에서 모두 다룬 경험이었습니다. 스토어 배포를 처음부터 끝까지 단독으로 진행하면서 TestFlight 심사 거절 사유 대응, Google Play 정책 검토 등 배포 프로세스 전반을 직접 익힐 수 있었습니다.',
+  },
+  {
+    id: 'portfolio',
+    title: '개인 포트폴리오',
+    subtitle: 'AI 챗봇 포함 포트폴리오 웹사이트',
+    period: '2026.05',
+    platform: 'Web',
+    links: [{ label: 'Site', url: 'https://27lia.github.io/portfolio_new/' }],
+    overview:
+      '직접 제작한 포트폴리오 사이트. Anthropic API를 활용한 AI 챗봇을 내장하여 방문자가 경력·기술·프로젝트에 대해 자연어로 질문하면 실시간으로 답변받을 수 있습니다.',
+    role: '기획 및 개발 (단독)',
+    roleDetails: [
+      'Anthropic API를 fetch로 직접 연동, SSE 스트림 파싱으로 실시간 스트리밍 구현',
+      '포트폴리오 전체 데이터를 system prompt로 주입해 경력 질문에 자동 응답하는 AI 어시스턴트 구현',
+      'GitHub Secrets에 API 키 저장 → GitHub Actions 빌드 시 VITE_ 환경변수로 주입 후 GitHub Pages 배포',
+    ],
+    skills: ['React', 'TypeScript', 'Vite', 'Tailwind CSS', 'Anthropic API'],
+    subsections: [
+      {
+        title: 'Anthropic API 스트리밍 챗봇',
+        asIsToBe: {
+          asIs: '포트폴리오를 방문한 채용담당자가 경력·기술 스택을 처음부터 끝까지 읽어야만 원하는 정보를 얻을 수 있었습니다.',
+          toBe: 'Anthropic API를 fetch로 직접 연동하고 SSE 청크를 파싱해 스트리밍 응답을 구현했습니다. 포트폴리오 전체 데이터를 system prompt에 주입하여 "결제 연동 경험 있나요?" 같은 질문에 즉시 답변하는 AI 어시스턴트를 제공합니다. GitHub Pages(정적 배포) 환경에서도 서버 없이 동작하도록 GitHub Actions 빌드 단계에서 Secrets의 API 키를 환경변수로 주입했습니다.',
+        },
+      },
+    ],
   },
   {
     id: 'piggicel',

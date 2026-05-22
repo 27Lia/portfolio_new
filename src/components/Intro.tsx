@@ -22,7 +22,7 @@ export default function Intro() {
           { value: "단독 완결", label: "개발·배포·운영 단독 수행" },
           { value: "Web + App", label: "React · RN 실서비스" },
           { value: "iOS · Android", label: "스토어 직접 출시" },
-          { value: "Toss · IAP · NICE", label: "외부 연동" },
+          { value: "AI 연동", label: "Anthropic API 챗봇 구현" },
         ].map(({ value, label }, i) => (
           <div key={label} className={`bg-white py-5 pr-5 ${i === 0 ? "pl-5 sm:pl-0" : "pl-5"}`}>
             <p className="text-lg sm:text-xl font-bold text-gray-900 tracking-tight leading-tight whitespace-nowrap">
