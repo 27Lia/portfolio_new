@@ -1,4 +1,4 @@
-import { AlertCircle, MessageCircle, Send, X } from 'lucide-react'
+import { AlertCircle, Send, X } from 'lucide-react'
 import { useEffect, useRef, useState } from 'react'
 import { SYSTEM_PROMPT } from '../lib/systemPrompt'
 
@@ -24,7 +24,27 @@ function parseErrorMessage(msg: string): string {
   return '오류가 발생했습니다. 잠시 후 다시 시도해주세요.'
 }
 
-const BUBBLE_KEY = 'chatbot-bubble-dismissed'
+function RobotCharacter() {
+  return (
+    <svg viewBox="0 0 32 36" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-8 h-8">
+      {/* Antenna */}
+      <line x1="16" y1="2" x2="16" y2="8" stroke="white" strokeWidth="1.8" strokeLinecap="round" />
+      <circle cx="16" cy="1.5" r="1.8" fill="white" />
+      {/* Head */}
+      <rect x="3" y="8" width="26" height="24" rx="7" fill="white" fillOpacity="0.95" />
+      {/* Eyes */}
+      <circle cx="11.5" cy="17" r="2.8" fill="#059669" />
+      <circle cx="20.5" cy="17" r="2.8" fill="#059669" />
+      <circle cx="12.5" cy="16" r="1" fill="white" />
+      <circle cx="21.5" cy="16" r="1" fill="white" />
+      {/* Smile */}
+      <path d="M11 24 Q16 27.5 21 24" stroke="#059669" strokeWidth="1.8" strokeLinecap="round" fill="none" />
+      {/* Cheeks */}
+      <ellipse cx="6.5" cy="22" rx="2.5" ry="1.5" fill="#bbf7d0" fillOpacity="0.8" />
+      <ellipse cx="25.5" cy="22" rx="2.5" ry="1.5" fill="#bbf7d0" fillOpacity="0.8" />
+    </svg>
+  )
+}
 
 export default function ChatBot() {
   const [isOpen, setIsOpen] = useState(false)
@@ -36,23 +56,11 @@ export default function ChatBot() {
   const messagesEndRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLInputElement>(null)
   const toastTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
-  const bubbleTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
 
   useEffect(() => {
-    if (localStorage.getItem(BUBBLE_KEY)) return
-    const show = setTimeout(() => setShowBubble(true), 2000)
-    bubbleTimer.current = setTimeout(() => dismissBubble(), 10000)
-    return () => {
-      clearTimeout(show)
-      if (bubbleTimer.current) clearTimeout(bubbleTimer.current)
-    }
+    const t = setTimeout(() => setShowBubble(true), 1500)
+    return () => clearTimeout(t)
   }, [])
-
-  const dismissBubble = () => {
-    setShowBubble(false)
-    localStorage.setItem(BUBBLE_KEY, '1')
-    if (bubbleTimer.current) clearTimeout(bubbleTimer.current)
-  }
 
   const showToast = (message: string) => {
     if (toastTimer.current) clearTimeout(toastTimer.current)
@@ -135,7 +143,7 @@ export default function ChatBot() {
               })
             }
           } catch {
-            // incomplete JSON chunk, continue
+            // incomplete JSON chunk
           }
         }
       }
@@ -157,13 +165,19 @@ export default function ChatBot() {
 
   return (
     <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-3">
+      {/* Chat panel */}
       {isOpen && (
         <div className="w-80 sm:w-96 h-[520px] bg-white rounded-2xl shadow-2xl border border-gray-100 flex flex-col overflow-hidden">
           {/* Header */}
           <div className="bg-emerald-600 px-4 py-3 flex items-center justify-between shrink-0">
-            <div className="flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-emerald-300 animate-pulse" />
-              <span className="text-white font-semibold text-sm">AI 어시스턴트</span>
+            <div className="flex items-center gap-2.5">
+              <div className="w-7 h-7 rounded-full bg-emerald-500 flex items-center justify-center shrink-0">
+                <RobotCharacter />
+              </div>
+              <div>
+                <p className="text-white font-semibold text-sm leading-tight">AI 어시스턴트</p>
+                <p className="text-emerald-200 text-[10px]">김선미의 포트폴리오 봇</p>
+              </div>
             </div>
             <button
               onClick={() => setIsOpen(false)}
@@ -253,37 +267,56 @@ export default function ChatBot() {
         </div>
       )}
 
-      {/* Speech bubble */}
-      {showBubble && !isOpen && (
-        <div className="relative flex items-end gap-2 animate-in slide-in-from-bottom-2 fade-in duration-300">
-          <div className="relative bg-white border border-gray-200 rounded-2xl rounded-br-sm shadow-lg px-4 py-3 max-w-[220px]">
-            <button
-              onClick={dismissBubble}
-              className="absolute -top-2 -right-2 w-5 h-5 rounded-full bg-gray-200 hover:bg-gray-300 flex items-center justify-center transition-colors"
-            >
-              <X className="w-2.5 h-2.5 text-gray-600" />
-            </button>
-            <p className="text-xs font-medium text-gray-800 leading-relaxed">
-              AI 어시스턴트예요!
-            </p>
-            <p className="text-xs text-gray-500 mt-0.5">
-              경력이나 프로젝트, 뭐든 물어보세요 :)
-            </p>
-          </div>
+      {/* Character + speech bubble */}
+      {!isOpen && (
+        <div className="flex items-end gap-2">
+          {/* Speech bubble */}
+          {showBubble && (
+            <div className="relative mb-1 animate-in slide-in-from-right-2 fade-in duration-300">
+              <div className="bg-white border border-gray-200 rounded-2xl rounded-br-none shadow-lg px-3.5 py-2.5 max-w-[180px]">
+                <p className="text-xs font-semibold text-gray-800">궁금한 거 있으세요?</p>
+                <p className="text-[11px] text-gray-400 mt-0.5 leading-relaxed">
+                  경력·프로젝트 뭐든 물어보세요!
+                </p>
+              </div>
+              {/* bubble tail */}
+              <div className="absolute -right-2 bottom-3 w-3 h-3 bg-white border-r border-b border-gray-200 rotate-[-45deg]" />
+              {/* close */}
+              <button
+                onClick={() => setShowBubble(false)}
+                className="absolute -top-2 -right-2 w-4 h-4 rounded-full bg-gray-300 hover:bg-gray-400 flex items-center justify-center transition-colors z-10"
+              >
+                <X className="w-2 h-2 text-gray-600" />
+              </button>
+            </div>
+          )}
+
+          {/* Robot character button */}
+          <button
+            onClick={() => {
+              setIsOpen(true)
+              setShowBubble(false)
+            }}
+            className="w-14 h-14 rounded-full bg-emerald-600 hover:bg-emerald-700 shadow-lg flex items-center justify-center transition-all hover:scale-105 active:scale-95 relative"
+            aria-label="AI 어시스턴트 열기"
+          >
+            <RobotCharacter />
+            {/* pulse ring */}
+            <span className="absolute inset-0 rounded-full animate-ping bg-emerald-400 opacity-20" />
+          </button>
         </div>
       )}
 
-      {/* Toggle button */}
-      <button
-        onClick={() => {
-          setIsOpen((v) => !v)
-          dismissBubble()
-        }}
-        className="w-12 h-12 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white shadow-lg flex items-center justify-center transition-all hover:scale-105 active:scale-95"
-        aria-label="AI 어시스턴트 열기"
-      >
-        {isOpen ? <X className="w-5 h-5" /> : <MessageCircle className="w-5 h-5" />}
-      </button>
+      {/* Close button when open */}
+      {isOpen && (
+        <button
+          onClick={() => setIsOpen(false)}
+          className="w-10 h-10 rounded-full bg-gray-100 hover:bg-gray-200 flex items-center justify-center transition-all"
+          aria-label="닫기"
+        >
+          <X className="w-4 h-4 text-gray-600" />
+        </button>
+      )}
     </div>
   )
 }
