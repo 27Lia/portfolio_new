@@ -10,38 +10,48 @@ export default function ProjectSection({ project }: Props) {
   return (
     <section id={project.id} className="pb-16 border-b border-gray-100">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3 mb-4">
-        <div className="flex items-center gap-3 min-w-0">
-          {project.logo && (
-            <img
-              src={project.logo}
-              alt={`${project.title} logo`}
-              className="w-10 h-10 rounded-full object-cover shrink-0"
-            />
+      <div className="flex items-stretch gap-4 mb-4">
+        <div className="w-0.5 bg-emerald-400 rounded-full shrink-0" />
+        <div className="flex-1 flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3">
+          <div className="flex items-center gap-3 min-w-0">
+            {project.logo && (
+              <img
+                src={project.logo}
+                alt={`${project.title} logo`}
+                className="w-10 h-10 rounded-full object-cover shrink-0"
+              />
+            )}
+            <div className="min-w-0">
+              <h2 className="text-xl sm:text-2xl font-bold text-gray-900 leading-tight break-words">
+                {project.title}
+              </h2>
+              <div className="flex items-center gap-2 mt-1 flex-wrap">
+                <span className="text-sm text-gray-400">{project.period}</span>
+                {project.subtitle && (
+                  <span className="px-2 py-0.5 text-[11px] font-medium bg-emerald-50 text-emerald-600 border border-emerald-100 rounded-full">
+                    {project.subtitle}
+                  </span>
+                )}
+              </div>
+            </div>
+          </div>
+          {project.links && project.links.length > 0 && (
+            <div className="flex items-center gap-2 shrink-0">
+              {project.links.map((link) => (
+                <a
+                  key={link.label}
+                  href={link.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium border border-gray-200 rounded-md text-gray-600 hover:text-emerald-600 hover:border-emerald-300 transition-colors"
+                >
+                  {link.label}
+                  <ExternalLink className="w-3 h-3" />
+                </a>
+              ))}
+            </div>
           )}
-          <div className="min-w-0">
-            <h2 className="text-xl sm:text-2xl font-bold text-gray-900 leading-tight break-words">
-              {project.title}
-            </h2>
-            <span className="text-sm text-gray-400">{project.period}</span>
-          </div>
         </div>
-        {project.links && project.links.length > 0 && (
-          <div className="flex items-center gap-2 shrink-0">
-            {project.links.map((link) => (
-              <a
-                key={link.label}
-                href={link.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium border border-gray-200 rounded-md text-gray-600 hover:text-emerald-600 hover:border-emerald-300 transition-colors"
-              >
-                {link.label}
-                <ExternalLink className="w-3 h-3" />
-              </a>
-            ))}
-          </div>
-        )}
       </div>
 
       {/* Screenshot */}
@@ -60,8 +70,8 @@ export default function ProjectSection({ project }: Props) {
                 alt={`${project.title} screenshot`}
                 className={
                   useContain
-                    ? "h-full object-contain"
-                    : "w-full h-full object-cover"
+                    ? "h-full object-contain transition-transform duration-300 hover:scale-105"
+                    : "w-full h-full object-cover transition-transform duration-300 hover:scale-105"
                 }
               />
             </div>
@@ -76,7 +86,9 @@ export default function ProjectSection({ project }: Props) {
           개요
         </h3>
         {project.platform && (
-          <p className="text-xs text-gray-400 mb-1">{project.platform}</p>
+          <span className="inline-block px-2 py-0.5 text-[11px] font-medium bg-gray-100 text-gray-500 rounded-full mb-2">
+            {project.platform}
+          </span>
         )}
         <p className="text-sm text-gray-600 leading-relaxed">
           {project.overview}
@@ -148,9 +160,11 @@ export default function ProjectSection({ project }: Props) {
           <h3 className="text-xs font-semibold text-gray-400 tracking-widest uppercase mb-3">
             회고
           </h3>
-          <p className="text-sm text-gray-600 leading-relaxed">
-            {project.retrospective}
-          </p>
+          <blockquote className="relative pl-4 border-l-2 border-emerald-300">
+            <p className="text-sm text-gray-600 leading-relaxed italic">
+              {project.retrospective}
+            </p>
+          </blockquote>
         </div>
       )}
     </section>

@@ -4,7 +4,7 @@
   --color-accent: #10b981;
   --color-accent-light: #ecfdf5;
   --color-accent-dark: #059669;
-  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-sans: 'Pretendard Variable', system-ui, -apple-system, sans-serif;
 }
 
 html {
@@ -16,7 +16,7 @@ body {
   min-width: 375px;
   background: #ffffff;
   color: #111827;
-  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  font-family: 'Pretendard Variable', system-ui, -apple-system, sans-serif;
   -webkit-font-smoothing: antialiased;
 }
 
