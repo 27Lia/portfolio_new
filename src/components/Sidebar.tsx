@@ -10,6 +10,7 @@ const navItems = [
   { id: "shakalaka-inventory", label: "SHAKALAKA Inventory" },
   { id: "expo", label: "원예치유박람회" },
   { id: "piggicel", label: "Piggicel" },
+  { id: "portfolio", label: "포트폴리오" },
   { id: "other-projects", label: "Other Projects" },
   // { id: "others", label: "Others" },
 ];
@@ -106,7 +107,7 @@ export default function Sidebar() {
         {/* Nav */}
         <nav className="flex-1 px-3 py-5 space-y-0.5">
           {navItems.map(({ id, label }, i) => {
-            const isDivider = i === 1 || i === 8;
+            const isDivider = i === 1 || i === 9;
             const isActive = activeId === id;
             return (
               <div key={id}>

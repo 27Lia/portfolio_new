@@ -214,6 +214,25 @@ export const mainProjects: Project[] = [
       '딥링크·권한처리·WebView 브릿지를 하나의 프로젝트에서 모두 다룬 경험이었습니다. 스토어 배포를 처음부터 끝까지 단독으로 진행하면서 TestFlight 심사 거절 사유 대응, Google Play 정책 검토 등 배포 프로세스 전반을 직접 익힐 수 있었습니다.',
   },
   {
+    id: 'piggicel',
+    title: 'Piggicel (충전돼지)',
+    subtitle: 'Next.js 이벤트 기능 개발',
+    period: '2025.05 – 2025.06',
+    platform: 'Web',
+    image: piggicelImg,
+    links: [{ label: 'Site', url: 'https://app.piggycell.io/ko/home' }],
+    overview:
+      '기존 서비스에 출석 체크 이벤트 기능을 단독으로 설계 및 개발. 외부 개발자로 투입되어 낯선 코드베이스를 분석한 후 독립적으로 기능을 구현했습니다.',
+    role: '프론트엔드 개발 (단독)',
+    roleDetails: [
+      '기존 서비스 코드베이스 분석 후 출석 체크 이벤트 기능 설계 및 개발',
+      '백엔드 API 연동을 통한 출석 데이터 기록 및 보상 지급 처리',
+      '출석 여부 및 보상 알림 UI 커스텀 구현',
+    ],
+    skills: ['Next.js', 'TypeScript'],
+    subsections: [],
+  },
+  {
     id: 'portfolio',
     title: '개인 포트폴리오',
     subtitle: 'AI 챗봇 포함 포트폴리오 웹사이트',
@@ -238,25 +257,6 @@ export const mainProjects: Project[] = [
         },
       },
     ],
-  },
-  {
-    id: 'piggicel',
-    title: 'Piggicel (충전돼지)',
-    subtitle: 'Next.js 이벤트 기능 개발',
-    period: '2025.05 – 2025.06',
-    platform: 'Web',
-    image: piggicelImg,
-    links: [{ label: 'Site', url: 'https://app.piggycell.io/ko/home' }],
-    overview:
-      '기존 서비스에 출석 체크 이벤트 기능을 단독으로 설계 및 개발. 외부 개발자로 투입되어 낯선 코드베이스를 분석한 후 독립적으로 기능을 구현했습니다.',
-    role: '프론트엔드 개발 (단독)',
-    roleDetails: [
-      '기존 서비스 코드베이스 분석 후 출석 체크 이벤트 기능 설계 및 개발',
-      '백엔드 API 연동을 통한 출석 데이터 기록 및 보상 지급 처리',
-      '출석 여부 및 보상 알림 UI 커스텀 구현',
-    ],
-    skills: ['Next.js', 'TypeScript'],
-    subsections: [],
   },
 ]
 
