@@ -52,15 +52,23 @@ export default function ChatBot() {
   const [input, setInput] = useState('')
   const [isLoading, setIsLoading] = useState(false)
   const [toast, setToast] = useState<string | null>(null)
-  const [showBubble, setShowBubble] = useState(false)
+  const [msgIndex, setMsgIndex] = useState(0)
+  const [fade, setFade] = useState(true)
   const messagesEndRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLInputElement>(null)
   const toastTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
 
   useEffect(() => {
-    const t = setTimeout(() => setShowBubble(true), 1500)
-    return () => clearTimeout(t)
-  }, [])
+    if (isOpen) return
+    const interval = setInterval(() => {
+      setFade(false)
+      setTimeout(() => {
+        setMsgIndex((i) => (i + 1) % SUGGESTIONS.length)
+        setFade(true)
+      }, 300)
+    }, 3000)
+    return () => clearInterval(interval)
+  }, [isOpen])
 
   const showToast = (message: string) => {
     if (toastTimer.current) clearTimeout(toastTimer.current)
@@ -267,41 +275,36 @@ export default function ChatBot() {
         </div>
       )}
 
-      {/* Character + speech bubble */}
+      {/* Character + message */}
       {!isOpen && (
         <div className="flex items-end gap-2">
-          {/* Speech bubble */}
-          {showBubble && (
-            <div className="relative mb-1 animate-in slide-in-from-right-2 fade-in duration-300">
-              <div className="bg-white border border-gray-200 rounded-2xl rounded-br-none shadow-lg px-3.5 py-2.5 max-w-[180px]">
-                <p className="text-xs font-semibold text-gray-800">궁금한 거 있으세요?</p>
-                <p className="text-[11px] text-gray-400 mt-0.5 leading-relaxed">
-                  경력·프로젝트 뭐든 물어보세요!
-                </p>
-              </div>
-              {/* bubble tail */}
-              <div className="absolute -right-2 bottom-3 w-3 h-3 bg-white border-r border-b border-gray-200 rotate-[-45deg]" />
-              {/* close */}
-              <button
-                onClick={() => setShowBubble(false)}
-                className="absolute -top-2 -right-2 w-4 h-4 rounded-full bg-gray-300 hover:bg-gray-400 flex items-center justify-center transition-colors z-10"
+          {/* Cycling message card */}
+          <button
+            onClick={() => setIsOpen(true)}
+            className="mb-1 text-left"
+          >
+            <div className="relative bg-white border border-gray-100 rounded-2xl rounded-br-none shadow-md px-3.5 py-2.5 max-w-[190px]">
+              <p className="text-[10px] text-emerald-600 font-semibold uppercase tracking-wide mb-1">
+                AI 어시스턴트
+              </p>
+              <p
+                className="text-xs text-gray-700 leading-relaxed transition-opacity duration-300"
+                style={{ opacity: fade ? 1 : 0 }}
               >
-                <X className="w-2 h-2 text-gray-600" />
-              </button>
+                {SUGGESTIONS[msgIndex]}
+              </p>
             </div>
-          )}
+            {/* bubble tail */}
+            <div className="absolute -right-2 bottom-3 w-3 h-3 bg-white border-r border-b border-gray-100 rotate-[-45deg]" />
+          </button>
 
           {/* Robot character button */}
           <button
-            onClick={() => {
-              setIsOpen(true)
-              setShowBubble(false)
-            }}
+            onClick={() => setIsOpen(true)}
             className="w-14 h-14 rounded-full bg-emerald-600 hover:bg-emerald-700 shadow-lg flex items-center justify-center transition-all hover:scale-105 active:scale-95 relative"
             aria-label="AI 어시스턴트 열기"
           >
             <RobotCharacter />
-            {/* pulse ring */}
             <span className="absolute inset-0 rounded-full animate-ping bg-emerald-400 opacity-20" />
           </button>
         </div>
