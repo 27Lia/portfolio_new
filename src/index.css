@@ -4,7 +4,7 @@
   --color-accent: #10b981;
   --color-accent-light: #ecfdf5;
   --color-accent-dark: #059669;
-  --font-sans: 'Pretendard Variable', system-ui, -apple-system, sans-serif;
+  --font-sans: "Pretendard Variable", system-ui, -apple-system, sans-serif;
 }
 
 html {
@@ -16,7 +16,11 @@ body {
   min-width: 375px;
   background: #ffffff;
   color: #111827;
-  font-family: 'Pretendard Variable', system-ui, -apple-system, sans-serif;
+  font-family:
+    "Pretendard Variable",
+    system-ui,
+    -apple-system,
+    sans-serif;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -36,7 +40,8 @@ body {
 @media print {
   @page {
     size: A4;
-    margin: 18mm 16mm;
+    margin: 0;
+    padding-top: 20px;
   }
 
   /* Hide all UI chrome */
@@ -48,10 +53,19 @@ body {
     display: none !important;
   }
 
+  /* 마진 0 보상용 body 패딩 */
+  body {
+    padding: 14mm 15mm !important;
+  }
+
   /* Fix layout */
   main {
     padding-left: 0 !important;
     padding-top: 0 !important;
+  }
+
+  main > div {
+    padding: 0 !important;
   }
 
   /* Override FadeIn inline styles */
@@ -62,9 +76,16 @@ body {
     transition: none !important;
   }
 
-  /* Hide project screenshots (large SVGs) */
+  /* 프로젝트 타이틀 깨짐 방지 */
+  h2 {
+    word-break: keep-all;
+  }
+
+  /* 프로젝트 이미지 표시 */
   .project-image {
-    display: none !important;
+    height: 160px !important;
+    max-height: 160px !important;
+    min-height: unset !important;
   }
 
   /* Page breaks */
@@ -73,11 +94,8 @@ body {
     page-break-inside: avoid;
   }
 
-  /* Links — show URL after text */
   a[href^="http"]::after {
-    content: " (" attr(href) ")";
-    font-size: 9pt;
-    color: #6b7280;
+    content: none;
   }
 }
 

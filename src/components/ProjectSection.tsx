@@ -21,7 +21,7 @@ export default function ProjectSection({ project }: Props) {
                 className="w-10 h-10 rounded-full object-cover shrink-0"
               />
             )}
-            <div className="min-w-0">
+            <div className="min-w-0 flex-1">
               <h2 className="text-xl sm:text-2xl font-bold text-gray-900 leading-tight break-words">
                 {project.title}
               </h2>
