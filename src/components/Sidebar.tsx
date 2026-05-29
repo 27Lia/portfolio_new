@@ -4,15 +4,17 @@ import { PERSONAL_INFO } from "../data/projects";
 
 const navItems = [
   { id: "intro", label: "소개" },
+  { id: "cover-letter", label: "자기소개서" },
+  { id: "career", label: "경력" },
+  { id: "portfolio", label: "포트폴리오" },
   { id: "pickmeup", label: "PickMeUp" },
   { id: "shakalaka", label: "SHAKALAKA" },
   { id: "shakalaka-admin", label: "SHAKALAKA Admin" },
   { id: "shakalaka-inventory", label: "SHAKALAKA Inventory" },
   { id: "expo", label: "원예치유박람회" },
   { id: "piggicel", label: "Piggicel" },
-  { id: "portfolio", label: "포트폴리오" },
   { id: "other-projects", label: "Other Projects" },
-  // { id: "others", label: "Others" },
+  { id: "education", label: "학력" },
 ];
 
 export default function Sidebar() {
